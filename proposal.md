@@ -1,8 +1,6 @@
 # Proposal: A Spotify Music Data Viewer
 
-I want to create a small tool that connects to Spotify and shows personalized music statistics.
-
-I will build a command-line tool that connects to the Spotify Web API using OAuth.  
+I want to create a small command line tool that connects to Spotify Web API using OAuth.
 
 It will:
 - Show my top tracks and artists from Spotify.
