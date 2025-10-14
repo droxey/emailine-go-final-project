@@ -14,3 +14,6 @@ Get weather for one or more cities:
 
 View search history:
 `go run main.go --history`
+
+<img width="1278" height="918" alt="image" src="https://github.com/user-attachments/assets/1a3ed409-6688-423c-95ef-2274a51d4956" />
+
