@@ -16,14 +16,9 @@ It will:
 - `golang.org/x/oauth2` for authentication (if needed later)
 - Public weather API (no signup required)
 
-## API Choice
-- **OpenWeatherMap API** - Free tier with 1000 calls/day
-- **WeatherAPI.com** - Free tier with 1 million calls/month
-- **wttr.in** - Completely free, no API key needed
-
 ## Go Features to Showcase
 - Goroutines for fetching multiple cities concurrently
-- Channels for coordinating API responses
+- Channels for coordinating API responsesini
 - JSON unmarshaling for API data
 - File I/O for saving search history
 - Error handling and graceful fallbacks
