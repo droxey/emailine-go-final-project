@@ -1,0 +1,49 @@
+{
+  "searches": [
+    {
+      "location": "irvine",
+      "temperature": "18°C",
+      "condition": "Partly cloudy",
+      "humidity": "65%",
+      "wind": "22 km/h SSE",
+      "forecast": [
+        "300: 16°C, Partly Cloudy ",
+        "600: 16°C, Clear ",
+        "900: 18°C, Overcast ",
+        "1200: 20°C, Overcast ",
+        "1500: 21°C, Cloudy "
+      ],
+      "timestamp": "2025-10-13T21:59:26.519779-07:00"
+    },
+    {
+      "location": "orange",
+      "temperature": "18°C",
+      "condition": "Partly cloudy",
+      "humidity": "65%",
+      "wind": "22 km/h SSE",
+      "forecast": [
+        "300: 16°C, Partly Cloudy ",
+        "600: 16°C, Clear ",
+        "900: 18°C, Overcast ",
+        "1200: 20°C, Overcast ",
+        "1500: 21°C, Cloudy "
+      ],
+      "timestamp": "2025-10-13T21:59:26.603777-07:00"
+    },
+    {
+      "location": "tokyo",
+      "temperature": "21°C",
+      "condition": "Partly cloudy",
+      "humidity": "69%",
+      "wind": "27 km/h NE",
+      "forecast": [
+        "300: 22°C, Patchy rain nearby",
+        "600: 21°C, Patchy rain nearby",
+        "900: 21°C, Patchy rain nearby",
+        "1200: 21°C, Partly cloudy",
+        "1500: 21°C, Overcast "
+      ],
+      "timestamp": "2025-10-13T21:59:26.603891-07:00"
+    }
+  ]
+}
