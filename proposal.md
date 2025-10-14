@@ -1,15 +1,29 @@
-# Proposal: A Spotify Music Data Viewer
+# Proposal: Weather CLI Tool
 
-I want to create a small command line tool that connects to Spotify Web API using OAuth.
+I want to create a simple command-line tool that fetches weather data from a free public API.
 
 It will:
-- Show my top tracks and artists from Spotify.
-- Display my most-played genres.
-- Generate a playlist with my current favorite songs.
-
+- Get current weather for any city
+- Display temperature, humidity, and weather conditions
+- Show a 5-day forecast
+- Save recent searches to a local file
+- Use Go's unique features like goroutines for concurrent API calls
 
 ## Tooling
 - Go
 - `net/http` for making API calls  
-- `encoding/json` for handling responses  
-- `golang.org/x/oauth2` for authentication 
+- `encoding/json` for handling responses
+- `golang.org/x/oauth2` for authentication (if needed later)
+- Public weather API (no signup required)
+
+## API Choice
+- **OpenWeatherMap API** - Free tier with 1000 calls/day
+- **WeatherAPI.com** - Free tier with 1 million calls/month
+- **wttr.in** - Completely free, no API key needed
+
+## Go Features to Showcase
+- Goroutines for fetching multiple cities concurrently
+- Channels for coordinating API responses
+- JSON unmarshaling for API data
+- File I/O for saving search history
+- Error handling and graceful fallbacks
