@@ -5,9 +5,9 @@ How to use:
 
 Install Go 1.20 or higher
 
-`git clone https://github.com/emalinegayhart/goweather.git`
+`git clone https://github.com/emalinegayhart/go-final-project.git`
 
-`cd goweather`
+`cd go-final-project`
 
 Get weather for one or more cities:
 `go run main.go London Paris Tokyo`
