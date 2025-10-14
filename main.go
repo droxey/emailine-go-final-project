@@ -21,41 +21,103 @@ var (
 	state = "abc123"
 )
 
+type Track struct {
+	ID       string
+	Name     string
+	Artists  []string
+	Album    string
+	Duration int
+}
+
+type Artist struct {
+	ID         string
+	Name       string
+	Genres     []string
+	Popularity int
+	Followers  int
+}
+
+type SpotifyClient struct {
+	client *spotify.Client
+	ctx    context.Context
+}
+
 func main() {
 	client, err := getSpotifyClient()
 	if err != nil {
 		log.Fatal("Failed to get Spotify client:", err)
 	}
 
-	ctx := context.Background()
+	spotifyClient := &SpotifyClient{
+		client: client,
+		ctx:    context.Background(),
+	}
 
 	fmt.Println("Fetching your Spotify data...")
 
-	topTracks, err := client.CurrentUsersTopTracks(ctx, spotify.Limit(10))
+	tracks := spotifyClient.fetchTopTracks()
+	artists := spotifyClient.fetchTopArtists()
+
+	displayData(tracks, artists)
+}
+
+func (sc *SpotifyClient) fetchTopTracks() []Track {
+	topTracks, err := sc.client.CurrentUsersTopTracks(sc.ctx, spotify.Limit(10))
 	if err != nil {
 		log.Fatal("Error fetching top tracks:", err)
 	}
 
-	topArtists, err := client.CurrentUsersTopArtists(ctx, spotify.Limit(10))
+	var tracks []Track
+	for _, track := range topTracks.Tracks {
+		artists := make([]string, len(track.Artists))
+		for i, artist := range track.Artists {
+			artists[i] = artist.Name
+		}
+
+		tracks = append(tracks, Track{
+			ID:       string(track.ID),
+			Name:     track.Name,
+			Artists:  artists,
+			Album:    track.Album.Name,
+			Duration: track.Duration,
+		})
+	}
+
+	return tracks
+}
+
+func (sc *SpotifyClient) fetchTopArtists() []Artist {
+	topArtists, err := sc.client.CurrentUsersTopArtists(sc.ctx, spotify.Limit(10))
 	if err != nil {
 		log.Fatal("Error fetching top artists:", err)
 	}
 
+	var artists []Artist
+	for _, artist := range topArtists.Artists {
+		artists = append(artists, Artist{
+			ID:         string(artist.ID),
+			Name:       artist.Name,
+			Genres:     artist.Genres,
+			Popularity: artist.Popularity,
+			Followers:  artist.Followers.Count,
+		})
+	}
+
+	return artists
+}
+
+func displayData(tracks []Track, artists []Artist) {
 	fmt.Println("\nYour Spotify Music Data")
 	fmt.Println("=" + strings.Repeat("=", 30))
 
 	fmt.Println("\nTop Tracks:")
-	for i, track := range topTracks.Tracks {
-		artists := make([]string, len(track.Artists))
-		for j, artist := range track.Artists {
-			artists[j] = artist.Name
-		}
-		fmt.Printf("%d. %s - %s\n", i+1, track.Name, strings.Join(artists, ", "))
+	for i, track := range tracks {
+		fmt.Printf("%d. %s - %s\n", i+1, track.Name, strings.Join(track.Artists, ", "))
 	}
 
 	fmt.Println("\nTop Artists:")
-	for i, artist := range topArtists.Artists {
-		fmt.Printf("%d. %s\n", i+1, artist.Name)
+	for i, artist := range artists {
+		fmt.Printf("%d. %s (Followers: %d)\n", i+1, artist.Name, artist.Followers)
 	}
 }
 
